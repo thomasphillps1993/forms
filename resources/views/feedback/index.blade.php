@@ -1,6 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-silver leading-tight">
+  <x-slot name="header">
+        <h2 class="font-semibold text-xl text-black leading-tight">
             {{ __('Your Feedback Submissions') }}
         </h2>
     </x-slot>
