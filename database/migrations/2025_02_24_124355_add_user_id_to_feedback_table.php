@@ -12,7 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('feedback', function (Blueprint $table) {
+            if (!$chema::hasColumn('feedback','user_id')){
                  $table->foreignId('user_id')->constrained();
+            }
         });
     }
 

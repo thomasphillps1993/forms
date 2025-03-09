@@ -4,8 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ConversationController;
-
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\RedditController;
 
 
 Route::get('/', function () {
@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');
+    Route::get('/reddit', [RedditController::class, 'index'])->name('reddit.index');
     Route::post('/feedback/send', [FeedbackController::class, 'store'])->name('feedback.store');
     Route::get('/feedback/submissions', [FeedbackController::class, 'index'])->name('feedback.index');
 });
@@ -44,4 +45,5 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/conversations/{conversation}/comments', [CommentController::class, 'store'])->name('comment.store');
 
 });
+
 require __DIR__.'/auth.php';

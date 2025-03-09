@@ -5,15 +5,11 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                  <a href="{{ route('dashboard') }}" class="inline-flex items-center">
-    <!-- Your Custom Image -->
-    <img src="{{ asset('images/logo.jpg') }}" alt="Dashboard Logo" class="w-10 h-10 rounded-full mr-2">
-    <!-- Optionally, you can add text next to the logo -->
-
-</a>
-
+                    <a href="{{ route('dashboard') }}" class="inline-flex items-center">
+                        <!-- Your Custom Image (now smaller) -->
+                        <img src="{{ asset('images/logo.jpg') }}" style="width: 40px; height: 40px;" alt="Dashboard Logo" class="rounded-full mr-2">
+                    </a>
                 </div>
-
             </div>
 
             <!-- Settings Dropdown -->
@@ -22,7 +18,6 @@
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-silver bg-black hover:text-white focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
-
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -32,7 +27,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')" class="text-silver hover:text-white">
+                        <x-dropdown-link :href="route('profile.edit')" class="text-silver hover:text-white custom-dropdown-link">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
@@ -40,7 +35,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')" class="text-silver hover:text-white"
+                            <x-dropdown-link :href="route('logout')" class="text-silver hover:text-white custom-dropdown-link"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
@@ -50,7 +45,7 @@
                 </x-dropdown>
             </div>
 
-            <!-- Hamburger -->
+            <!-- Hamburger (for mobile) -->
             <div class="-me-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-silver hover:text-white hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -63,19 +58,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-<div x-data="{ open: false }">
-    <!-- Mobile Menu Toggle Button -->
-    <div class="sm:hidden flex items-center justify-between p-4 bg-gray-700">
-        <!-- Toggle Button for Mobile Menu -->
-        <button @click="open = !open" class="text-silver focus:outline-none">
-            <svg :class="{'transform rotate-180': open}" class="h-6 w-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"></path>
-            </svg>
-        </button>
-    </div>
-
-    <!-- Mobile Navigation Menu -->
-    <div :class="{'block': open, 'hidden': !open}" class="sm:hidden hidden">
+    <div :class="{'block': open, 'hidden': !open}" class="sm:hidden">
         <!-- Links Section -->
         <div class="pt-2 pb-3 space-y-1 bg-gray-800">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-gray-300 hover:text-white">
@@ -93,14 +76,14 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Profile Link -->
-                <x-responsive-nav-link :href="route('profile.edit')" class="text-gray-300 hover:text-white">
+                <x-responsive-nav-link :href="route('profile.edit')" class="text-gray-300 hover:text-white custom-nav-link">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Log Out Form -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <x-responsive-nav-link :href="route('logout')" class="text-gray-300 hover:text-white" 
+                    <x-responsive-nav-link :href="route('logout')" class="text-gray-300 hover:text-white custom-nav-link" 
                             onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
@@ -108,5 +91,29 @@
             </div>
         </div>
     </div>
-</div>
+</nav>
 
+<!-- Add the following custom styles -->
+<style>
+    .custom-dropdown-link {
+        padding: 10px 20px;
+        background-color: #1a202c; /* Darker background for the dropdown links */
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .custom-dropdown-link:hover {
+        background-color: #4a5568; /* Lighter gray when hovering */
+    }
+
+    .custom-nav-link {
+        padding: 10px 20px;
+        background-color: #1a202c;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .custom-nav-link:hover {
+        background-color: #4a5568;
+    }
+</style>
