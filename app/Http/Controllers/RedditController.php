@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class RedditController extends Controller
@@ -10,21 +9,20 @@ class RedditController extends Controller
     public function index()
     {
         // Define the subreddit URL
-        $subredditUrl = 'https://www.reddit.com/r/technology/new.json'; // You can replace 'technology' with any subreddit you want
+        $subredditUrl = 'https://www.reddit.com/r/technology/new.json'; 
 
-        // Send GET request to Reddit API
-        $response = Http::get($subredditUrl);
+        // Send GET request with custom headers
+        $response = Http::withHeaders([
+            'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        ])->get($subredditUrl);
 
         // Check if the response is successful
         if ($response->successful()) {
-            // Get posts data from the response
             $posts = $response->json()['data']['children'];
         } else {
-            // Handle the error if the API request fails
-            $posts = [];
+            $posts = []; // Handle errors
         }
 
-        // Return the view with the posts data
         return view('reddit.index', compact('posts'));
     }
 }
