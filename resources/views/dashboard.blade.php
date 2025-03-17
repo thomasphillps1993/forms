@@ -9,38 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-silver">
-                    <div x-data="{
-                        time: new Date().toLocaleTimeString(),
-                        weather: null,
-                        init() {
-                            setInterval(() => {
-                                this.time = new Date().toLocaleTimeString();
-                            }, 1000);
-                    
-                            this.getLocation();
-                        },
-                        async getLocation() {
-                            try {
-                                const res = await fetch('http://ip-api.com/json/');
-                                const data = await res.json();
-                                if (data.lat && data.lon) {
-                                    this.getWeather(data.lat, data.lon);
-                                }
-                            } catch (error) {
-                                console.error('Error fetching location:', error.message);
-                            }
-                        },
-                        async getWeather(lat, lon) {
-                            try {
-                                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
-                                const data = await res.json();
-                                this.weather = data.current_weather;
-                            } catch (error) {
-                                console.error('Error fetching weather data:', error.message);
-                            }
-                        }
-                    }" x-init="init" class="text-2xl font-bold text-center my-4">
-
+                    <div x-data="weatherWidget" x-init="init" class="text-2xl font-bold text-center my-4">
                         <!-- Clock -->
                         <div class="text-white mb-4">
                             🕒 <span x-text="time"></span>
@@ -62,7 +31,6 @@
                             </div>
                         </template>
                     </div>
-
 
                     <!-- Navigation Bar -->
                     <nav class="bg-gray-900 p-4 rounded-lg shadow-md">
