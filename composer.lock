@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b5357e7b8690328c13fb1abe7292d55",
+    "content-hash": "dfbea1198776064c5b50c7a690858997",
     "packages": [
         {
             "name": "brick/math",
@@ -5515,6 +5515,47 @@
             "time": "2025-01-17T11:39:41+00:00"
         },
         {
+            "name": "thomasphillips/tiktok-orders",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thomasphillps1993/tiktok-orders.git",
+                "reference": "ab949f4311667ccb52ac823289534a0cfafcd30a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thomasphillps1993/tiktok-orders/zipball/ab949f4311667ccb52ac823289534a0cfafcd30a",
+                "reference": "ab949f4311667ccb52ac823289534a0cfafcd30a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ThomasPhillips\\TikTokOrders\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Phillips",
+                    "email": "tommyphillips1993@gmail.com"
+                }
+            ],
+            "description": "A PHP package to fetch orders from TikTok Shop API",
+            "support": {
+                "issues": "https://github.com/thomasphillps1993/tiktok-orders/issues",
+                "source": "https://github.com/thomasphillps1993/tiktok-orders/tree/main"
+            },
+            "time": "2025-03-28T15:24:12+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "v2.3.0",
             "source": {
@@ -9063,7 +9104,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "thomasphillips/tiktok-orders": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
